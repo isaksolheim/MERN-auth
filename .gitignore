@@ -24,3 +24,5 @@
 # BACKEND
 /node_modules
 .env
+
+/config/keys.js
