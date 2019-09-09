@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/authActions';
+import classnames from 'classnames';
 
 class Login extends React.Component {
   constructor() {
@@ -10,6 +14,17 @@ class Login extends React.Component {
       password: '',
       errors: {}
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/dashboard'); // push user to dashboard when they login
+    }
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
   }
 
   onChange = e => {
@@ -24,7 +39,7 @@ class Login extends React.Component {
       password: this.state.password
     };
 
-    console.log(userData);
+    this.props.loginUser(userData);
   };
 
   render() {
@@ -43,16 +58,30 @@ class Login extends React.Component {
             error={errors.email}
             id="email"
             type="email"
+            className={classnames("", {
+              invalid: errors.email || errors.emailnotfound
+            })}
           />
           <label htmlFor="email">Email</label>
+          <p>
+            {errors.email}
+            {errors.emailnotfound}
+          </p>
           <input
             onChange={this.onChange}
             value={this.state.password}
             error={errors.password}
             id="password"
             type="password"
+            className={classnames("", {
+              invalid: errors.password || errors.passwordincorrect
+            })}
           />
           <label htmlFor="password">Password</label>
+          <p>
+            {errors.password}
+            {errors.passwordincorrect}
+          </p>
           <button type="submit">Login</button>
         </form>
       </section>
@@ -60,4 +89,18 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
