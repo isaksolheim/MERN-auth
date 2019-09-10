@@ -1,8 +1,8 @@
-## Expensive.wtf
-Expensive is a web app that makes tracking expenses easy.
+## MERN-auth
+Boilerplate for MERN-applications with user authentication
 
 ## Project Status
-Work in progress
+Finished
 
 ## Built with
 * [MongoDB](https://www.mongodb.com/)
@@ -10,7 +10,6 @@ Work in progress
 * [React](https://reactjs.org/)
 * [Node.js](https://nodejs.org/en/)
 * [Redux](https://redux.js.org/)
-* [Sass](https://sass-lang.com/)
 
 ## Installation and Usage
 #### Example:
