@@ -14,19 +14,27 @@ Finished
 ## Installation and Usage
 #### Example:
 Clone this repository. You will need `node`, `nodemon` and `npm` installed globally on your machine.  
+You need to add a file called `.env` to the root directory. The file should contain your MongoDB URI.
+Example: `ATLAS_URI = YOUR_URI_GOES_HERE`
 
+You also need to add `keys.js` to the `config/` directory. This file should contain a any secrey key.
+Example: 
+```javascript
+module.exports = {
+  secretOrKey: "secret"
+};
+```
 Installation:  
 
 `npm install`  
 
 To Start MongoDB Server:  
 
-`cd backend/`  
-
 `nodemon server`  
 
-To Start React App:  
-
+To Install and start React App:  
+`cd client/`
+`npm install`
 `npm start`  
 
 To Visit App:  
