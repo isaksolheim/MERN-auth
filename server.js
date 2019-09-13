@@ -18,13 +18,11 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
-const expensesRouter = require('./routes/expenses');
 const usersRouter = require('./routes/users');
 
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
-app.use('/', expensesRouter);
 app.use('/api/users', usersRouter);
 
 app.listen(port, () => {
